@@ -1,11 +1,11 @@
 # WPNinjas Password Generation
 
 
-I developed this helper library because I require often secure generated passwords. Especially this was created to support [CloudLAPS](https://github.com/MSEndpointMgr/CloudLAPS).
+I developed this helper library because I require often secure generated passwords. This was especially created to support [CloudLAPS](https://github.com/MSEndpointMgr/CloudLAPS).
 Improvements and contributions are always welcome.
 
 ## Nuget package for .NET projects
-The package is available on [Nuget](). Simply install it by searching for 'WPNinjas.PasswordGeneration'. You can the retrieve generated passwords by using:
+The package is available on [Nuget](https://www.nuget.org/packages/WPNinjas.PasswordGeneration). Simply install it by searching for 'WPNinjas.PasswordGeneration'. You can the retrieve generated passwords by using:
 
 ```c#
 
