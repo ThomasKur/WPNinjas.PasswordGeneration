@@ -27,7 +27,7 @@ Author = 'Thomas Kurth'
 CompanyName = 'WorkplaceNinjas'
 
 # Copyright statement for this module
-Copyright = '(c) 2021 Thomas Kurth. All rights reserved.'
+Copyright = '(c) 2022 Thomas Kurth. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'I developed this helper library because I require often secure generated passwords. Especially this was created to support CloudLAPS https://github.com/MSEndpointMgr/CloudLAPS'
