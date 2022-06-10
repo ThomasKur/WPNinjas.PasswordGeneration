@@ -72,9 +72,9 @@ Test-ModuleManifest -Path "$ModulePath\WPNinjas.PasswordGeneration.psd1" -ErrorA
 #region Sign Scripts
     Copy-Item -Path $ModulePath -Destination $env:TEMP -Recurse -Force
     $cert = get-item Cert:\CurrentUser\My\* -CodeSigningCert | Out-GridView -OutputMode Single
-    $PSFiles = Get-ChildItem -Path $env:TEMP\WPNinjas.PasswordGeneration -Recurse | Where-Object {$_.Extension -eq ".dll" -or $_.Extension -eq ".ps1" -or $_.Extension -eq ".psm1"}
+    $PSFiles = Get-ChildItem -Path $env:TEMP\WPNinjas.PasswordGeneration -Recurse | Where-Object {$_.Extension -eq ".ps1" -or $_.Extension -eq ".psm1" -or $_.Extension -eq ".dll"}
     foreach($PSFile in $PSFiles){
-        Set-AuthenticodeSignature -Certificate $cert -TimestampServer http://timestamp.verisign.com/scripts/timstamp.dll -FilePath ($PSFile.FullName) -Verbose
+        Set-AuthenticodeSignature -Certificate $cert -TimestampServer http://timestamp.digicert.com -FilePath ($PSFile.FullName) -Verbose
     }
 #endregion
 $PSGallerAPIKey = Read-Host "Insert PSGallery API Key"
