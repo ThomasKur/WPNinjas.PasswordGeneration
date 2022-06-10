@@ -4,9 +4,9 @@ import-module "$scriptPath\WPNinjas.PasswordGeneration\WPNinjas.PasswordGenerati
 Invoke-PasswordGeneration 
 Invoke-SecurePasswordGeneration 
 Invoke-PasswordGeneration -Length 8
-Invoke-SecurePasswordGeneration -Length 8
+Invoke-SecurePasswordGeneration -Length 8 -RequireComplexity
 
-Invoke-PasswordGeneration -AllowedCharacters "ABCDEFGH1234567890"
+Invoke-PasswordGeneration -AllowedCharacters "ABCDEFGH1234567890" -RequireComplexity
 Invoke-SecurePasswordGeneration -AllowedCharacters "ABCDEFGH1234567890"
 
 Invoke-PasswordGeneration -AllowedCharacters "ABCDEFGH1234567890" -Length 8

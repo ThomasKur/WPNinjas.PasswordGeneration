@@ -2,6 +2,7 @@
 using System.Security;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WPNinjas.PasswordGeneration
 {
@@ -32,7 +33,6 @@ namespace WPNinjas.PasswordGeneration
 				}
 
 				StringBuilder builder = new StringBuilder();
-
 				for (int i = 0; i < len; i++)
 				{
 					// Get our cryptographically random 32-bit integer & use as seed in Random class
@@ -91,5 +91,60 @@ namespace WPNinjas.PasswordGeneration
 				throw new Exception("An error has occurred while trying to generate random password!", ex);
 			}
 		}
+		public static string GetRandomComplexPassword(int len, string allowedCharacters = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz.:;,-_!?$%*=+&<>@#()23456789") {
+			string password = "";
+			int count = 0;
+			do
+			{
+				password = GetRandomPassword(len, allowedCharacters);
+				count += 1;
+
+			} while (CheckStrength(password) < 4 && count < 10);
+
+			return password;
+		}
+		public static SecureString GetRandomComplexPasswordSecure(int len, string allowedCharacters = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz.:;,-_!?$%*=+&<>@#()23456789")
+		{
+			String password = null;
+			int count = 0;
+			do
+			{
+				password = GetRandomPassword(len, allowedCharacters);
+				count += 1;
+				
+			} while (CheckStrength(password) < 4 && count < 10);
+			
+			var secStr = new System.Security.SecureString(); secStr.Clear();
+			foreach (char c in password.ToCharArray())
+			{
+				secStr.AppendChar(c);
+			}
+			return secStr;
+		}
+
+		public static int CheckStrength(string password)
+		{
+			int score = 0;
+
+			if (password.Length < 1)
+				return 0;
+			if (password.Length < 4)
+				return 0;
+
+			if (password.Length >= 8)
+				score++;
+			if (password.Length >= 12)
+				score++;
+			if (Regex.Match(password, @"/\d+/", RegexOptions.ECMAScript).Success)
+				score++;
+			if (Regex.Match(password, @"/[a-z]/", RegexOptions.ECMAScript).Success &&
+			  Regex.Match(password, @"/[A-Z]/", RegexOptions.ECMAScript).Success)
+				score++;
+			if (Regex.Match(password, @"/.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/", RegexOptions.ECMAScript).Success)
+				score++;
+
+			return score;
+		}
+
 	}
 }
