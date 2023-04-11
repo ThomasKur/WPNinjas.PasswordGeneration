@@ -36,7 +36,7 @@ function Write-Log {
         [Exception]
         $Exception
     )
-    $LogFilePathFolder     = Join-Path -Path $Env:TEMP -ChildPath $ScriptName
+    $LogFilePathFolder     = [IO.Path]::Combine($Env:TEMP, $ScriptName)
     $OutputMode  = "Console" # "Console-LogFile","Console-WindowsEvent","LogFile-WindowsEvent","Console","LogFile","WindowsEvent","All"
     $DefaultLogWindowsEventSource = "IntuneDocumentation"
     $DefaultLogWindowsEventLog = "CustomPS"
